@@ -12,7 +12,6 @@ Este repositório contém apenas a configuração inicial e as dependências bá
 
 ## Uso
 
-1. Copie `.env.example` para `.env` e ajuste as variáveis (ou rode `pnpm run setup-env`).
 2. Rode `pnpm install` na raiz do projeto.
 
 Scripts auxiliares:
