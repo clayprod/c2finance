@@ -13,6 +13,7 @@ Este reposit\u00f3rio cont\u00e9m apenas a configura\u00e7\u00e3o inicial e as d
 ## Uso
 
 1. Copie `.env.example` para `.env` e ajuste as vari\u00e1veis.
+   Você também pode executar `pnpm run setup-env` para gerar um arquivo `.env` padrão.
 2. Rode `pnpm install` na raiz do projeto.
 
 Scripts auxiliares:
