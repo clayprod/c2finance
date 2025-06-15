@@ -15,7 +15,7 @@ export class User extends Model<
   declare id: CreationOptional<string>;
   declare name: string;
   declare email: string;
-  declare password_hash: string;
+  declare password_hash: CreationOptional<string>;
   declare password?: string;
   declare created_at: CreationOptional<Date>;
   declare updated_at: CreationOptional<Date>;
