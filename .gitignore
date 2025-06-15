@@ -12,6 +12,7 @@ yarn-error.log*
 /apps/**/dist
 /apps/**/build
 /packages/**/dist
+**/tsconfig.tsbuildinfo
 
 # Misc
 .DS_Store
