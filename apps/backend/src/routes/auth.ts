@@ -2,6 +2,7 @@ import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../db/models/user';
+import { AuthRequest } from '../types/authRequest';
 import { Session } from '../db/models/session';
 import { authMiddleware } from '../middleware/auth';
 
@@ -45,8 +46,8 @@ router.post('/login', async (req, res) => {
 });
 
 
-router.get('/me', authMiddleware, (req, res) => {
-  const user = req.user as User;
+router.get('/me', authMiddleware, (req: AuthRequest, res) => {
+  const user = req.user;
   res.json({ id: user.id, email: user.email });
 });
 
