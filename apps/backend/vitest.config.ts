@@ -1,2 +1,9 @@
 import { defineConfig } from 'vitest/config';
-export default defineConfig({ test: { include: ['test/**/*.ts'] } });
+import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.resolve(__dirname, '../../.env.test') });
+
+export default defineConfig({
+  test: { include: ['test/**/*.ts'] },
+});
