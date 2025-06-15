@@ -7,24 +7,20 @@ import {
   Sequelize,
 } from 'sequelize';
 
-export class Goal extends Model<InferAttributes<Goal>, InferCreationAttributes<Goal>> {
-  declare id: CreationOptional<string>;
-  declare user_id: string;
-  declare month: string;
-export class Goal extends Model<
-  InferAttributes<Goal>,
-  InferCreationAttributes<Goal>
+export class Account extends Model<
+  InferAttributes<Account>,
+  InferCreationAttributes<Account>
 > {
   declare id: CreationOptional<string>;
   declare user_id: string;
-  declare category_id: string;
-  declare amount: number;
+  declare name: string;
+  declare balance: CreationOptional<number>;
   declare created_at: CreationOptional<Date>;
   declare updated_at: CreationOptional<Date>;
 }
 
-export function initGoalModel(sequelize: Sequelize) {
-  Goal.init(
+export function initAccountModel(sequelize: Sequelize) {
+  Account.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -35,19 +31,14 @@ export function initGoalModel(sequelize: Sequelize) {
         type: DataTypes.UUID,
         allowNull: false,
       },
-      month: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      amount: {
-        type: DataTypes.FLOAT,
-      category_id: {
-        type: DataTypes.UUID,
-        allowNull: false,
-      },
-      amount: {
+      balance: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
+        defaultValue: 0,
       },
       created_at: {
         type: DataTypes.DATE,
@@ -62,13 +53,11 @@ export function initGoalModel(sequelize: Sequelize) {
     },
     {
       sequelize,
-      tableName: 'goals',
-      timestamps: true,
-      underscored: true,
+      tableName: 'accounts',
       underscored: true,
       timestamps: true,
     },
   );
 
-  return Goal;
+  return Account;
 }
