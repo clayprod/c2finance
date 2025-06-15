@@ -13,6 +13,7 @@ export class Goal extends Model<
 > {
   declare id: CreationOptional<string>;
   declare user_id: string;
+
   declare category_id: string | null;
   declare month: string;
   declare amount: number;
@@ -35,6 +36,10 @@ export function initGoalModel(sequelize: Sequelize) {
       category_id: {
         type: DataTypes.UUID,
         allowNull: true,
+      },
+      month: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       month: {
         type: DataTypes.STRING,
