@@ -1,12 +1,18 @@
 import request from 'supertest';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterAll } from 'vitest';
 import { createApp } from '../src/app';
+import { sequelize } from '../src/db';
 
 describe('auth flow', () => {
   let app: ReturnType<typeof createApp>['app'];
 
-  beforeEach(() => {
+  beforeEach(async () => {
     ({ app } = createApp());
+    await sequelize.sync({ force: true });
+  });
+
+  afterAll(async () => {
+    await sequelize.close();
   });
 
   it('registers a new user', async () => {
@@ -17,7 +23,9 @@ describe('auth flow', () => {
   });
 
   it('fails to register duplicate email', async () => {
-    await request(app).post('/register').send({ email: 'dup@example.com', password: 'a' });
+    await request(app)
+      .post('/register')
+      .send({ email: 'dup@example.com', password: 'a' });
     const res = await request(app)
       .post('/register')
       .send({ email: 'dup@example.com', password: 'a' });
@@ -25,7 +33,9 @@ describe('auth flow', () => {
   });
 
   it('login succeeds with correct password', async () => {
-    await request(app).post('/register').send({ email: 'log@example.com', password: 'pass' });
+    await request(app)
+      .post('/register')
+      .send({ email: 'log@example.com', password: 'pass' });
     const res = await request(app)
       .post('/login')
       .send({ email: 'log@example.com', password: 'pass' });
@@ -34,7 +44,9 @@ describe('auth flow', () => {
   });
 
   it('login fails with wrong password', async () => {
-    await request(app).post('/register').send({ email: 'log2@example.com', password: 'pass' });
+    await request(app)
+      .post('/register')
+      .send({ email: 'log2@example.com', password: 'pass' });
     const res = await request(app)
       .post('/login')
       .send({ email: 'log2@example.com', password: 'wrong' });
@@ -42,7 +54,9 @@ describe('auth flow', () => {
   });
 
   it('access /me with valid token', async () => {
-    await request(app).post('/register').send({ email: 'me@example.com', password: 'pass' });
+    await request(app)
+      .post('/register')
+      .send({ email: 'me@example.com', password: 'pass' });
     const login = await request(app)
       .post('/login')
       .send({ email: 'me@example.com', password: 'pass' });
