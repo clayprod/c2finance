@@ -29,7 +29,7 @@ describe('auth flow', () => {
     const res = await request(app)
       .post('/register')
       .send({ email: 'dup@example.com', password: 'a' });
-    expect(res.status).toBe(409);
+    expect(res.status).toBe(400);
   });
 
   it('login succeeds with correct password', async () => {

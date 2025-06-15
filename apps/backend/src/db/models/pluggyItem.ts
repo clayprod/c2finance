@@ -13,7 +13,7 @@ export class PluggyItem extends Model<
 > {
   declare id: CreationOptional<string>;
   declare user_id: string;
-  declare item_id: string;
+  declare pluggy_item_id: string;
   declare created_at: CreationOptional<Date>;
   declare updated_at: CreationOptional<Date>;
 }
@@ -30,7 +30,7 @@ export function initPluggyItemModel(sequelize: Sequelize) {
         type: DataTypes.UUID,
         allowNull: false,
       },
-      item_id: {
+      pluggy_item_id: {
         type: DataTypes.STRING,
         allowNull: false,
       },
