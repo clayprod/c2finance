@@ -1,4 +1,5 @@
 import express from 'express';
+codex/criar-testes-com-vitest-para-autenticação
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -42,3 +43,13 @@ export function createApp() {
 
   return { app, users };
 }
+=======
+import authRoutes from './routes/auth';
+
+const app = express();
+
+app.use(express.json());
+app.use(authRoutes);
+
+export default app;
+main
