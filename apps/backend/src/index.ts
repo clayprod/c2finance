@@ -1,3 +1,15 @@
+codex/criar-testes-com-vitest-para-autenticação
+import { createApp } from './app';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const { app } = createApp();
+const port = process.env.PORT || 3000;
+app.listen(Number(port), () => {
+  console.log(`Server running on port ${port}`);
+});
+=======
 codex/criar-rotas-de-autenticação-e-atualizar-app.ts
 import dotenv from 'dotenv';
 import app from './app';
@@ -34,4 +46,5 @@ async function start() {
 
 start();
 
+main
 main
