@@ -27,8 +27,10 @@ if (!databaseUrl) {
   throw new Error('Database URL not provided');
 }
 
+const dialect = databaseUrl.startsWith('sqlite') ? 'sqlite' : 'postgres';
+
 export const sequelize = new Sequelize(databaseUrl, {
-  dialect: 'postgres',
+  dialect: dialect as any,
   logging: false,
 });
 
