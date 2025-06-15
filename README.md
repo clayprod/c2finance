@@ -12,6 +12,7 @@ Este repositório contém apenas a configuração inicial e as dependências bá
 
 ## Uso
 
+1. Clone o repositório
 2. Rode `pnpm install` na raiz do projeto.
 
 Scripts auxiliares:
