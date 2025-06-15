@@ -1,9 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { Session } from '../db/models/session';
 import { User } from '../db/models/user';
+import { AuthRequest } from '../types/authRequest';
 
-export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
   const auth = req.header('Authorization');
   if (!auth || !auth.startsWith('Bearer ')) {
     res.status(401).json({ message: 'Unauthorized' });
