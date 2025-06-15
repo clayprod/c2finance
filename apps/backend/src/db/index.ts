@@ -4,6 +4,8 @@ import { Sequelize } from 'sequelize';
 import { initUserModel, User } from './models/user';
 import { initSessionModel, Session } from './models/session';
 import { initPluggyItemModel, PluggyItem } from './models/pluggyItem';
+import { initGoalModel, Goal } from './models/goal';
+import { initTransactionModel, Transaction } from './models/transaction';
 import { initAccountModel, Account } from './models/account';
 import { initTransactionModel, Transaction } from './models/transaction';
 import { initCategoryModel, Category } from './models/category';
@@ -33,6 +35,8 @@ export const sequelize = new Sequelize(databaseUrl, {
 initUserModel(sequelize);
 initSessionModel(sequelize);
 initPluggyItemModel(sequelize);
+initGoalModel(sequelize);
+initTransactionModel(sequelize);
 initAccountModel(sequelize);
 initTransactionModel(sequelize);
 initCategoryModel(sequelize);
@@ -44,6 +48,11 @@ Session.belongsTo(User, { foreignKey: 'user_id' });
 User.hasMany(PluggyItem, { foreignKey: 'user_id', as: 'pluggyItems' });
 PluggyItem.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
+User.hasMany(Goal, { foreignKey: 'user_id', as: 'goals' });
+Goal.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
+
+User.hasMany(Transaction, { foreignKey: 'user_id', as: 'transactions' });
+Transaction.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Account, { foreignKey: 'user_id', as: 'accounts' });
 Account.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
@@ -64,6 +73,7 @@ if (['development', 'test'].includes(process.env.NODE_ENV || '')) {
   sequelize.sync();
 }
 
+export { User, Session, PluggyItem, Goal, Transaction };
 export {
   User,
   Session,

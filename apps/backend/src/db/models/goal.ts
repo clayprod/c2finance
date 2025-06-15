@@ -7,6 +7,10 @@ import {
   Sequelize,
 } from 'sequelize';
 
+export class Goal extends Model<InferAttributes<Goal>, InferCreationAttributes<Goal>> {
+  declare id: CreationOptional<string>;
+  declare user_id: string;
+  declare month: string;
 export class Goal extends Model<
   InferAttributes<Goal>,
   InferCreationAttributes<Goal>
@@ -31,6 +35,12 @@ export function initGoalModel(sequelize: Sequelize) {
         type: DataTypes.UUID,
         allowNull: false,
       },
+      month: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      amount: {
+        type: DataTypes.FLOAT,
       category_id: {
         type: DataTypes.UUID,
         allowNull: false,
@@ -53,6 +63,8 @@ export function initGoalModel(sequelize: Sequelize) {
     {
       sequelize,
       tableName: 'goals',
+      timestamps: true,
+      underscored: true,
       underscored: true,
       timestamps: true,
     },

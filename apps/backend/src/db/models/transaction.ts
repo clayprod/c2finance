@@ -7,6 +7,11 @@ import {
   Sequelize,
 } from 'sequelize';
 
+export class Transaction extends Model<InferAttributes<Transaction>, InferCreationAttributes<Transaction>> {
+  declare id: CreationOptional<string>;
+  declare user_id: string;
+  declare amount: number;
+  declare date: Date;
 export class Transaction extends Model<
   InferAttributes<Transaction>,
   InferCreationAttributes<Transaction>
@@ -30,14 +35,25 @@ export function initTransactionModel(sequelize: Sequelize) {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+
       account_id: {
         type: DataTypes.UUID,
         allowNull: false,
       },
+
       user_id: {
         type: DataTypes.UUID,
         allowNull: false,
       },
+
+      amount: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+
       category_id: {
         type: DataTypes.UUID,
         allowNull: true,
@@ -53,6 +69,7 @@ export function initTransactionModel(sequelize: Sequelize) {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
+
       },
       created_at: {
         type: DataTypes.DATE,
@@ -68,6 +85,10 @@ export function initTransactionModel(sequelize: Sequelize) {
     {
       sequelize,
       tableName: 'transactions',
+
+      timestamps: true,
+      underscored: true,
+
       underscored: true,
       timestamps: true,
     },
