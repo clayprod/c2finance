@@ -16,13 +16,14 @@ Este repositório contém apenas a configuração inicial e as dependências bá
 2. Rode `pnpm install` na raiz do projeto.
 3. Execute `./setup-env.sh` para criar os arquivos `.env` e `.env.test` caso
    ainda não existam.
-3. Execute `./setup-env.sh` para criar o arquivo `.env`.
 4. Inicie o backend com `pnpm --filter @c2finance/backend dev` e o frontend com `pnpm --filter @c2finance/frontend dev`.
 
 Scripts auxiliares:
 
 - `pnpm lint` — verifica o código com ESLint.
 - `pnpm format` — formata com Prettier.
+- `pnpm --filter @c2finance/backend test` — executa os testes do backend.
+- `pnpm --filter @c2finance/frontend test` — executa os testes do frontend.
 
 ## Licença
 
