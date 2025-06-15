@@ -6,7 +6,7 @@ Este repositório contém apenas a configuração inicial e as dependências bá
 
 ## Estrutura
 
-- **apps/backend**: API em Node.js/Express (sem código funcional ainda).
+- **apps/backend**: API em Node.js/Express com rotas de autenticação (`/register`, `/login`, `/me`) e endpoint `/pluggy/item` para salvar o id do item.
 - **apps/frontend**: Frontend em React + Tailwind via Vite.
 - **packages/shared**: Código compartilhado entre os apps.
 
@@ -16,6 +16,8 @@ Este repositório contém apenas a configuração inicial e as dependências bá
 2. Rode `pnpm install` na raiz do projeto.
 3. Execute `./setup-env.sh` para criar os arquivos `.env` e `.env.test` caso
    ainda não existam.
+3. Execute `./setup-env.sh` para criar o arquivo `.env`.
+4. Inicie o backend com `pnpm --filter @c2finance/backend dev` e o frontend com `pnpm --filter @c2finance/frontend dev`.
 
 Scripts auxiliares:
 
