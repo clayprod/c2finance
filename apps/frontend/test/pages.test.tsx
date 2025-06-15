@@ -30,7 +30,7 @@ beforeEach(() => {
       return Promise.resolve({ json: () => Promise.resolve([]) });
     }
     return Promise.resolve({ json: () => Promise.resolve({}) });
-  }) as any;
+  }) as unknown as typeof fetch;
 });
 
 describe('pages', () => {
