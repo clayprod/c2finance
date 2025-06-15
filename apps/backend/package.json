@@ -8,19 +8,21 @@
     "dev": "ts-node src/index.ts",
     "build": "tsc -b",
     "start": "node dist/index.js",
-    "test": "vitest run",
+    "test": "NODE_ENV=test vitest run",
     "lint": "eslint ."
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^4.19.2",
-    "sequelize": "^6.37.0",
     "pg": "^8.11.3",
-    "pluggy-sdk": "^0.72.1"
+    "pluggy-sdk": "^0.72.1",
+    "sequelize": "^6.37.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.8.7",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^3.2.3"
   }
 }
