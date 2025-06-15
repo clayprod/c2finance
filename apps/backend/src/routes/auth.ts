@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
 
 
 router.get('/me', authMiddleware, (req, res) => {
-  const user = (req as any).user as User;
+  const user = req.user as User;
   res.json({ id: user.id, email: user.email });
 });
 

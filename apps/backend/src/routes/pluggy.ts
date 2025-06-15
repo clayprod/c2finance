@@ -10,7 +10,7 @@ router.post('/pluggy/item', authMiddleware, async (req, res) => {
     res.status(400).json({ message: 'pluggyItemId is required' });
     return;
   }
-  const user = (req as any).user;
+  const user = req.user!;
   const item = await PluggyItem.create({
     user_id: user.id,
     pluggy_item_id: pluggyItemId,
