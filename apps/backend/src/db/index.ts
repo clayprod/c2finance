@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'path';
-import { Sequelize } from 'sequelize';
+import { Sequelize, Dialect } from 'sequelize';
 import { initUserModel, User } from './models/user';
 import { initSessionModel, Session } from './models/session';
 import { initPluggyItemModel, PluggyItem } from './models/pluggyItem';
@@ -25,10 +25,10 @@ if (!databaseUrl) {
   throw new Error('Database URL not provided');
 }
 
-const dialect = databaseUrl.startsWith('sqlite') ? 'sqlite' : 'postgres';
+const dialect: Dialect = databaseUrl.startsWith('sqlite') ? 'sqlite' : 'postgres';
 
 export const sequelize = new Sequelize(databaseUrl, {
-  dialect: dialect as any,
+  dialect,
   logging: false,
 });
 

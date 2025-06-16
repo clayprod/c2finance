@@ -68,6 +68,7 @@ export function initTransactionModel(sequelize: Sequelize) {
     {
       sequelize,
       tableName: 'transactions',
+
       underscored: true,
       timestamps: true,
     },

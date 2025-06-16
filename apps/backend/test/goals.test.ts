@@ -6,15 +6,13 @@ import { sequelize } from '../src/db';
 describe('goal routes', () => {
   let app: ReturnType<typeof createApp>['app'];
   let token: string;
-  let userId: string;
 
   beforeEach(async () => {
     ({ app } = createApp());
     await sequelize.sync({ force: true });
-    const reg = await request(app)
+    await request(app)
       .post('/register')
       .send({ email: 'goal@test.com', password: 'pass' });
-    userId = reg.body.id;
     const login = await request(app)
       .post('/login')
       .send({ email: 'goal@test.com', password: 'pass' });

@@ -5,13 +5,13 @@ import { AuthRequest } from '../types/authRequest';
 
 const router = Router();
 
-router.post('/pluggy/item', authMiddleware, async (req: AuthRequest, res) => {
+router.post('/pluggy/item', authMiddleware, async (req, res) => {
   const { pluggyItemId } = req.body || {};
   if (!pluggyItemId) {
     res.status(400).json({ message: 'pluggyItemId is required' });
     return;
   }
-  const user = req.user;
+  const user = (req as AuthRequest).user;
   const item = await PluggyItem.create({
     user_id: user.id,
     pluggy_item_id: pluggyItemId,

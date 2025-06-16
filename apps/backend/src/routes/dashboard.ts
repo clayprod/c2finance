@@ -2,11 +2,12 @@ import { Router } from 'express';
 import { authMiddleware } from '../middleware/auth';
 import { Goal } from '../db/models/goal';
 import { Transaction } from '../db/models/transaction';
+import { AuthRequest } from '../types/authRequest';
 
 const router = Router();
 
 router.get('/dashboard/monthly', authMiddleware, async (req, res) => {
-  const user = req.user!;
+  const user = (req as AuthRequest).user!;
   const goals = await Goal.findAll({ where: { user_id: user.id } });
   const transactions = await Transaction.findAll({ where: { user_id: user.id } });
 

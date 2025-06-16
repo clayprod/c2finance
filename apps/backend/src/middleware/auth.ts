@@ -1,10 +1,14 @@
-import { Response, NextFunction } from 'express';
+import { Response, NextFunction, RequestHandler } from 'express';
 import jwt from 'jsonwebtoken';
 import { Session } from '../db/models/session';
 import { User } from '../db/models/user';
 import { AuthRequest } from '../types/authRequest';
 
-export async function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
+export const authMiddleware: RequestHandler = async (
+  req,
+  res: Response,
+  next: NextFunction,
+) => {
   const auth = req.header('Authorization');
   if (!auth || !auth.startsWith('Bearer ')) {
     res.status(401).json({ message: 'Unauthorized' });
@@ -24,9 +28,9 @@ export async function authMiddleware(req: AuthRequest, res: Response, next: Next
       res.status(401).json({ message: 'Unauthorized' });
       return;
     }
-    req.user = user;
+    (req as AuthRequest).user = user;
     next();
   } catch {
     res.status(401).json({ message: 'Unauthorized' });
   }
-}
+};
