@@ -64,7 +64,6 @@ Goal.belongsTo(Category, { foreignKey: 'category_id', as: 'category' });
 if (['development', 'test'].includes(process.env.NODE_ENV || '')) {
   sequelize.sync();
 }
-
 export {
   User,
   Session,

@@ -38,6 +38,7 @@ export function initGoalModel(sequelize: Sequelize) {
       },
       month: {
         type: DataTypes.STRING,
+
         allowNull: false,
       },
       amount: {
@@ -58,8 +59,9 @@ export function initGoalModel(sequelize: Sequelize) {
     {
       sequelize,
       tableName: 'goals',
-      timestamps: true,
+
       underscored: true,
+      timestamps: true,
     },
   );
 

@@ -12,7 +12,7 @@ export class Transaction extends Model<
   InferCreationAttributes<Transaction>
 > {
   declare id: CreationOptional<string>;
-  declare account_id: string;
+  declare account_id: string | null;
   declare user_id: string;
   declare category_id: string | null;
   declare amount: number;
@@ -32,7 +32,7 @@ export function initTransactionModel(sequelize: Sequelize) {
       },
       account_id: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
       },
       user_id: {
         type: DataTypes.UUID,
@@ -68,8 +68,9 @@ export function initTransactionModel(sequelize: Sequelize) {
     {
       sequelize,
       tableName: 'transactions',
-      timestamps: true,
+
       underscored: true,
+      timestamps: true,
     },
   );
 
